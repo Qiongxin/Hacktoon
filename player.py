@@ -15,6 +15,7 @@ class Player(pygame.sprite.Sprite):
 
         self.direction = pygame.math.Vector2(0,0)
         self.speed = 5
+
         self.obstacle_sprites = obstacle_sprites
 
     def import_player_assets(self):
@@ -25,6 +26,7 @@ class Player(pygame.sprite.Sprite):
         for animation in self.animations.keys():
             full_path = character_path + animation
             self.animations[animation] = import_folder(full_path)
+        self.obstacle_sprites = obstacle_sprites
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -69,6 +71,12 @@ class Player(pygame.sprite.Sprite):
             self.frame_index = 0
 
         self.image = animation[int(self.frame_index)]
+
+        # def collision(self.direction):
+        #     if self.direction == 'horizontal':
+        #         for sprite in self.obstacle_sprites:
+        #             if sprite.rect.colliderect(self.rect):
+        #                 pass
 
     def update(self):
         self.input()
