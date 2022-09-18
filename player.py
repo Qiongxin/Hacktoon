@@ -31,11 +31,11 @@ class Player(pygame.sprite.Sprite):
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
         self.rect.center += self.direction * speed
-    def collision(self.direction):
-        if self.direction == 'horizontal':
-            for sprite in self.obstacle_sprites:
-                if sprite.rect.colliderect(self.rect):
-                    pass
+    # def collision(self.direction):
+    #     if self.direction == 'horizontal':
+    #         for sprite in self.obstacle_sprites:
+    #             if sprite.rect.colliderect(self.rect):
+    #                 pass
     def update(self):
         self.input()
         self.move(self.speed)
