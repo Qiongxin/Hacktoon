@@ -3,7 +3,7 @@ from settings import *
 from support import import_folder
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, groups):
+    def __init__(self, pos, groups, obstacle_sprites):
         super().__init__(groups)
         self.image = pygame.image.load('images/character.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
@@ -15,6 +15,7 @@ class Player(pygame.sprite.Sprite):
 
         self.direction = pygame.math.Vector2(0,0)
         self.speed = 5
+        self.obstacle_sprites = obstacle_sprites
 
     def import_player_assets(self):
         character_path = 'images/character/'
@@ -24,7 +25,6 @@ class Player(pygame.sprite.Sprite):
         for animation in self.animations.keys():
             full_path = character_path + animation
             self.animations[animation] = import_folder(full_path)
-        print(self.animations)
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -55,6 +55,12 @@ class Player(pygame.sprite.Sprite):
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
         self.rect.center += self.direction * speed
+
+        # def collision(self.direction):
+        #     if self.direction == 'horizontal':
+        #         for sprite in self.obstacle_sprites:
+        #             if sprite.rect.colliderect(self.rect):
+        #                 pass
 
     def animate(self):
         animation = self.animations[self.status]
