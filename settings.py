@@ -7,13 +7,13 @@ CAPTION = "GAME NAME"
 # Tiles are labeled as follows:
 # For tiles with grass borders (water, dirt):
 # [Type]_[Grass borders]_[Inner corner toggle]
-# So a water tile with a border on the top and left, and an inner corner on the bottom right, would be:
+# So a water tile with a border on the top and left, and an inner corner in the bottom right, would be:
 # W_G1G2_1
-# And a dirt tile with no borders would be:
-# D
+# And a dirt tile with no borders and an inner corner in the top leftwould be:
+# D__4
 # W = water, D = dirt
 # G1-G4 signify grass borders on the North, East, South, and West sides in that order
-# The last digit toggles the inner corner for that tile, and only applies for tiles with 2 edges
+# The last digit toggles the inner corner for that tile
 # A last digit of 0 means no corner
 # A value of 1-4 signify a corner in the NE, SE, SW, NW corners in that order
 
@@ -22,7 +22,7 @@ CAPTION = "GAME NAME"
 # Tree2
 # etc
 WORLD_MAP = [
-['W_','x','x','x','x','x','x','x','x','x'],    
+['W__2','W_3','W_3','W_3','W_3','W_3','W_3','W_3','W_3','W__3'],    
 ['x',' ',' ',' ',' ',' ',' ',' ',' ','x'],    
 ['x',' ',' ',' ',' ',' ',' ',' ',' ','x'],    
 ['x',' ','p',' ',' ',' ',' ',' ',' ','x'],    

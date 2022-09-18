@@ -13,9 +13,11 @@ class Level:
             for col_index, col in enumerate(row):
                 x = col_index * TILE_SIZE
                 y = row_index * TILE_SIZE
-                if col == 'x':
-                    Tile((x, y), [self.visible_sprites, self.obstacles])
-                if col == 'p':
+                tileName = WORLD_MAP[row_index][col_index].split("_")
+                if col != 'p':
+                    img = tileName[0]
+                    Tile((x, y), [self.visible_sprites, self.obstacles], )
+                else:
                     self.player = Player((x, y), [self.visible_sprites], self.obstacles)
     def run(self):
         self.visible_sprites.custom_draw(self.player)
