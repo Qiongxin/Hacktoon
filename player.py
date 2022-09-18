@@ -2,13 +2,16 @@ import pygame
 from settings import *
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, groups):
+    def __init__(self, pos, groups, obstacle_sprites):
         super().__init__(groups)
         self.image = pygame.image.load('images/character.png')
         self.rect = self.image.get_rect(topleft = pos)
         
         self.direction = pygame.math.Vector2(0,0)
         self.speed = 5
+        
+        self.obstacle_sprites = obstacle_sprites
+        
     def input(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP]:
@@ -28,6 +31,11 @@ class Player(pygame.sprite.Sprite):
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
         self.rect.center += self.direction * speed
+    def collision(self.direction):
+        if self.direction == 'horizontal':
+            for sprite in self.obstacle_sprites:
+                if sprite.rect.colliderect(self.rect):
+                    pass
     def update(self):
         self.input()
         self.move(self.speed)
