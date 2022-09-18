@@ -46,8 +46,10 @@ class Player(pygame.sprite.Sprite):
             self.status = 'right'
         else:
             self.direction.x = 0
-
-<<<<<<< HEAD
+    def get_status(self):
+        if self.direction.x == 0 and self.direction.y == 0:
+            if not 'idle' in self.status:
+                self.status = self.status + '_idle'
     def move(self, speed):
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
@@ -71,23 +73,6 @@ class Player(pygame.sprite.Sprite):
                         self.rect.bottom = sprite.rect.top
                     if self.direction.y < 0:
                         self.rect.top = sprite.rect.bottom
-=======
-    def get_status(self):
-        if self.direction.x == 0 and self.direction.y == 0:
-            if not 'idle' in self.status:
-                self.status = self.status + '_idle'
-
-    def move(self, speed):
-        if self.direction.magnitude() != 0:
-            self.direction = self.direction.normalize()
-        self.rect.center += self.direction * speed
-
-        # def collision(self.direction):
-        #     if self.direction == 'horizontal':
-        #         for sprite in self.obstacle_sprites:
-        #             if sprite.rect.colliderect(self.rect):
-        #                 pass
-
     def animate(self):
         animation = self.animations[self.status]
         self.frame_index += self.animation_speed
@@ -95,14 +80,6 @@ class Player(pygame.sprite.Sprite):
             self.frame_index = 0
 
         self.image = animation[int(self.frame_index)]
-
-        # def collision(self.direction):
-        #     if self.direction == 'horizontal':
-        #         for sprite in self.obstacle_sprites:
-        #             if sprite.rect.colliderect(self.rect):
-        #                 pass
-
->>>>>>> ab5350f3ad49a241f274193acb8baa81fb0f65b0
     def update(self):
         self.input()
         self.get_status()
